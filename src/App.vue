@@ -1,18 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <header class="top-bar">
+    <nav class="top-bar-nav">
+      <router-link to="/" class="top-bar-link">
+        <span>Home Page</span>
+      </router-link>
+      <router-link to="/login-user" class="top-bar-link">
+        <span>Login</span>
+      </router-link>
+      <router-link to="/favourite-movies" class="top-bar-link">
+        <span>Favourite Movies</span>
+      </router-link>
+    </nav>
+  </header>
+
+
+  <router-view />
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
 </script>
+
+
 
 <style>
 #app {
