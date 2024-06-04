@@ -16,12 +16,14 @@
       <span>Selected Movies Modal:{{ this.moviesListData.length }}</span>
     </div>
   </header>
-  <CartModal modalTitle="My Favourite Movies" :toggle="toggleModal" v-if="showModal" />
+  <CartModal modalTitle="My Favourite Movies" :toggle="toggleModal" v-if="showModal">
+    <SelectedMoviesInfo :moviesListData="moviesListData" :removeMovie="removeFromCart" />
+  </CartModal>
   <router-view :addToCart="addToCart" />
   <footer>
     website simple footer
   </footer>
-  <SelectedMoviesInfo :moviesListData="moviesListData" :removeMovie="removeFromCart" />
+
 
 </template>
 
@@ -50,14 +52,11 @@ export default {
       console.log(this.moviesListData)
     },
     removeFromCart(movieId) {
-      console.log("remove" + movieId)
-
       this.moviesListData = this.moviesListData.filter(item => {
         return item.id !== movieId
       }
       );
       console.log(this.moviesListData)
-
     }
 
   }
@@ -95,7 +94,6 @@ footer {
 }
 
 .modal-toggle {
-
   display: inline;
   margin-top: 20px;
   margin-bottom: 20px;

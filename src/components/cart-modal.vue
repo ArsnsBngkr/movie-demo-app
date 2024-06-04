@@ -9,9 +9,7 @@
                     {{ modalTitle }}
                 </div>
                 <div class="modal-info">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem aliquam sapiente beatae placeat
-                    impedit tempora laboriosam dolore sunt, distinctio pariatur delectus ipsa commodi voluptate,
-                    repudiandae atque, accusamus recusandae quam hic.
+                    <slot/>
                 </div>
             </div>
         </div>
