@@ -1,16 +1,23 @@
 <template>
   <header class="top-bar">
     <nav class="top-bar-nav">
-      <router-link to="/" class="top-bar-link">
-        <span>Home Page</span>
-      </router-link>
-      <router-link to="/login-user" class="top-bar-link">
-        <span>Login</span>
-      </router-link>
-      <router-link to="/favourite-movies" class="top-bar-link">
-        <span>Favourite Movies</span>
-      </router-link>
-
+      <ul class="menu">
+        <li>
+          <router-link to="/" class="top-bar-link">
+            <span>Home Page</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/login-user" class="top-bar-link">
+            <span>Login</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/favourite-movies" class="top-bar-link">
+            <span>Favourite Movies</span>
+          </router-link>
+        </li>
+      </ul>
     </nav>
     <div @click="toggleModal" class="modal-toggle" role="button">
       <span>Selected Movies Modal:{{ this.moviesListData.length }}</span>
@@ -19,12 +26,10 @@
   <CartModal modalTitle="My Favourite Movies" :toggle="toggleModal" v-if="showModal">
     <SelectedMoviesInfo :moviesListData="moviesListData" :removeMovie="removeFromCart" />
   </CartModal>
-  <router-view :addToCart="addToCart" />
+  <router-view :addToCart="addToCart" :moviesListData="moviesListData" :removeFromCart="removeFromCart" />
   <footer>
     website simple footer
   </footer>
-
-
 </template>
 
 <script>
@@ -58,7 +63,6 @@ export default {
       );
       console.log(this.moviesListData)
     }
-
   }
 };
 </script>
@@ -82,6 +86,32 @@ header {
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+
+
+.top-bar-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.top-bar-nav li {
+  float: left;
+}
+
+.top-bar-nav li a {
+  display: block;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.top-bar-nav li a:hover {
+  background-color: #111;
 }
 
 footer {
