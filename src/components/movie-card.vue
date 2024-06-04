@@ -1,14 +1,11 @@
 <template>
-
-
-
     <div class="card">
         <div class="card-container">
             <img :src="movie.Poster != 'N/A' ? movie.Poster : noAvailableImage" v-bind:alt="movie.Title"
                 style="width: 100%">
             <h3 class="card-title">{{ movie.Title }}</h3>
             <p class="release-year">Release year:{{ movie.Year }}</p>
-            <p><button @click="addToCart(movie.imdbID,movie.Title)">Add to favourites</button></p>
+            <p><button @click="addToCart(movie.imdbID,movie.Title,movie.Year)">Add to favourites</button></p>
         </div>
     </div>
 </template>
@@ -24,8 +21,6 @@ export default {
 
     },
     methods:{
-   
-
     }
 }
 </script>

@@ -13,18 +13,15 @@
 
     </nav>
     <div @click="toggleModal" class="modal-toggle" role="button">
-      <span>Selected Movies Modal:{{this.moviesListData.length}}</span>
+      <span>Selected Movies Modal:{{ this.moviesListData.length }}</span>
     </div>
   </header>
   <CartModal modalTitle="My Favourite Movies" :toggle="toggleModal" v-if="showModal" />
-
   <router-view :addToCart="addToCart" />
-
-
   <footer>
     website simple footer
   </footer>
-  <SelectedMoviesInfo :moviesListData="moviesListData" />
+  <SelectedMoviesInfo :moviesListData="moviesListData" :removeMovie="removeFromCart" />
 
 </template>
 
@@ -45,12 +42,22 @@ export default {
     toggleModal() {
       this.showModal = !this.showModal;
     },
-    addToCart(movieId, movieTitle) {
+    addToCart(movieId, movieTitle, movieYear) {
       const doesAlreadyExist = this.moviesListData.find((item) => item.id === movieId);
       if (!doesAlreadyExist) {
-        this.moviesListData = [...this.moviesListData, { id: movieId, title: movieTitle }]
+        this.moviesListData = [...this.moviesListData, { id: movieId, title: movieTitle, year: movieYear }]
       }
       console.log(this.moviesListData)
+    },
+    removeFromCart(movieId) {
+      console.log("remove" + movieId)
+
+      this.moviesListData = this.moviesListData.filter(item => {
+        return item.id !== movieId
+      }
+      );
+      console.log(this.moviesListData)
+
     }
 
   }
@@ -88,7 +95,7 @@ footer {
 }
 
 .modal-toggle {
-  border: 1px solid black;
+
   display: inline;
   margin-top: 20px;
   margin-bottom: 20px;
