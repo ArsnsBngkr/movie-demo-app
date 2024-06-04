@@ -11,8 +11,6 @@
         <div v-else>no available movies</div>
     </div>
 
-
-
 </template>
 
 <script>

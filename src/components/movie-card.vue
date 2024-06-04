@@ -4,7 +4,8 @@
 
     <div class="card">
         <div class="card-container">
-            <img :src="movie.Poster !='N/A'? movie.Poster: noAvailableImage" v-bind:alt="movie.Title" style="width: 100%">
+            <img :src="movie.Poster != 'N/A' ? movie.Poster : noAvailableImage" v-bind:alt="movie.Title"
+                style="width: 100%">
             <h3 class="card-title">{{ movie.Title }}</h3>
             <p class="release-year">Release year:{{ movie.Year }}</p>
             <p><button @click="addToCart(movie.imdbID)">Add to favourites</button></p>
@@ -13,20 +14,19 @@
 </template>
 
 <script>
-import noAvailableImage from '../assets/images/noAvailableImage.jpg'
+import noAvailableImage from "../assets/images/noAvailableImage.jpg";
 export default {
     props: ['movie'],
     data() {
-        return{
-            noAvailableImage :noAvailableImage 
+        return {
+            noAvailableImage: noAvailableImage
         }
 
     },
-    methods: {
-        addToCart(movieId){
-            console.log(movieId)
-
-        }
+    methods:{
+        addToCart(selectedMovieId) {
+            console.log(selectedMovieId)
+        },
 
     }
 }
@@ -54,7 +54,7 @@ export default {
 
 }
 
-.card-container img{
+.card-container img {
     height: 200px;
 }
 
