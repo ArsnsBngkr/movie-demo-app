@@ -1,18 +1,24 @@
 <template>
     <div class="form-group">
-        <label for=""><span>{{label}}</span></label>
-        <input :type="type">
+        <label for=""><span>{{ label }}</span></label>
+        <input :type="type" v-model="inputValue" @keyup='handleOnKeyUp()' />
 
     </div>
 </template>
 
-
 <script>
-
 export default {
-
-    props: ['label', 'type', 'value'],
-
+    props: ['label', 'type', 'modelValue', 'handleOnKeyUp'],
+    computed: {
+        inputValue: {
+            get() {
+                return this.modelValue;
+            },
+            set(value) {
+                this.$emit('update:modelValue', value);
+            }
+        }
+    },
 }
 
 </script>
@@ -45,9 +51,6 @@ export default {
     margin-bottom: 1rem;
     border: 1px solid rgb(133, 129, 129);
 }
-
-
-
 
 .newUser span {
     color: rgb(25, 176, 176);
