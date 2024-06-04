@@ -8,7 +8,7 @@
                 style="width: 100%">
             <h3 class="card-title">{{ movie.Title }}</h3>
             <p class="release-year">Release year:{{ movie.Year }}</p>
-            <p><button @click="addToCart(movie.imdbID)">Add to favourites</button></p>
+            <p><button @click="addToCart(movie.imdbID,movie.Title)">Add to favourites</button></p>
         </div>
     </div>
 </template>
@@ -16,7 +16,7 @@
 <script>
 import noAvailableImage from "../assets/images/noAvailableImage.jpg";
 export default {
-    props: ['movie'],
+    props: ['movie','addToCart'],
     data() {
         return {
             noAvailableImage: noAvailableImage
@@ -24,9 +24,7 @@ export default {
 
     },
     methods:{
-        addToCart(selectedMovieId) {
-            console.log(selectedMovieId)
-        },
+   
 
     }
 }

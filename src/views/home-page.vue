@@ -6,7 +6,7 @@
     </div>
     <div class="available-movies">
         <div v-if="moviesData != undefined" class="movie-cards-container">
-            <MovieCard v-for="(movie) in moviesData" :key="movie.imdbID" :movie="movie" />
+            <MovieCard v-for="(movie) in moviesData" :key="movie.imdbID" :movie="movie" :addToCart="addToCart" />
         </div>
         <div v-else>no available movies</div>
     </div>
@@ -22,6 +22,7 @@ export default {
     components: {
         MovieCard
     },
+    props:['addToCart'],
     data: function () {
         return {
             moviesData: [],
@@ -38,7 +39,9 @@ export default {
             this.moviesData = data.Search;
             console.log(this.moviesData)
 
-        }
+        },
+   
+
     },
 
     created() {

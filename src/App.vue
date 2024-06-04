@@ -13,37 +13,47 @@
 
     </nav>
     <div @click="toggleModal" class="modal-toggle" role="button">
-        <span >Selected Movies Modal:</span>
-      </div>
+      <span>Selected Movies Modal:{{this.moviesListData.length}}</span>
+    </div>
   </header>
-  <CartModal modalTitle="My Favourite Movies"  :toggle="toggleModal" v-if="showModal"/>
-  
-  <router-view />
+  <CartModal modalTitle="My Favourite Movies" :toggle="toggleModal" v-if="showModal" />
+
+  <router-view :addToCart="addToCart" />
 
 
   <footer>
     website simple footer
   </footer>
+  <SelectedMoviesInfo :moviesListData="moviesListData" />
 
 </template>
 
 <script>
 
 import CartModal from "./components/cart-modal.vue";
+import SelectedMoviesInfo from "./components/selected-movies-info.vue";
+
 export default {
-  components: { CartModal },
-  data () {
+  components: { CartModal, SelectedMoviesInfo },
+  data() {
     return {
       showModal: false,
+      moviesListData: [],
     }
   },
-  methods:{
-    toggleModal () {
-      this.showModal= !this.showModal;
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
     },
+    addToCart(movieId, movieTitle) {
+      const doesAlreadyExist = this.moviesListData.find((item) => item.id === movieId);
+      if (!doesAlreadyExist) {
+        this.moviesListData = [...this.moviesListData, { id: movieId, title: movieTitle }]
+      }
+      console.log(this.moviesListData)
+    }
 
   }
-
 };
 </script>
 
@@ -62,31 +72,28 @@ export default {
 }
 
 
-header{
+header {
   display: flex;
   flex-direction: column;
   align-items: start;
 }
 
-footer{
+footer {
   height: 80px;
-  background-color :blue;
+  background-color: blue;
   color: azure;
   font-size: 20px;
   min-height: 50px;
   margin-top: auto;
 }
 
-.modal-toggle{
-  border :1px solid black;
+.modal-toggle {
+  border: 1px solid black;
   display: inline;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 8px;
-  text-decoration:underline;
-  cursor:pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
-
-
-
 </style>
